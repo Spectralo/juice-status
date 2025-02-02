@@ -1,6 +1,6 @@
 # Juice Status
 
-_ a simple status app to get [juice](https://juice.hackclub.com) data in your Slack status!_
+_a simple status app to get [juice](https://juice.hackclub.com) data in your Slack status!_
 
 ## How to setup this
 
