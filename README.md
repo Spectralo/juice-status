@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/e1ba996f-946c-4689-85f6-4cd041d490fb)
+
+
 # Juice Status
 
 _a simple status app to get [juice](https://juice.hackclub.com) data in your Slack status!_
