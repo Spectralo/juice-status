@@ -19,13 +19,13 @@ const file_path = process.env.FILE_PATH;
       axios
         .get("https://juice.hackclub.com/api/user", {
           headers: {
-            Authorization: `Bearer ${process.env.JUICE_TOKEN}`,
+            Authorization: `Bearer ${jsonData[key]}`,
           },
         })
         .then((res: any) => {
           console.log(res.data.userData.totalJuiceHours);
           app.client.users.profile.set({
-            token: process.env.SLACK_BOT_TOKEN,
+            token: key,
             profile: {
               status_text: `${Math.round(res.data.userData.totalJuiceHours * 10) / 10} hours spent juicing!`,
               status_emoji: ":juice:",
