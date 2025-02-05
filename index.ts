@@ -6,12 +6,17 @@ const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
 });
 
+const file_path = process.env.filePath
+
 (async () => {
   await app.start(process.env.PORT || 3000);
   console.log("Juice Status is running!");
-  setInterval(() => {
-    console.log("Fetching hours ...");
-    axios
+  setInterval(async () => {
+    const file = Bun.file(file_path);
+    const jsonData = await file.json();
+
+    jsonData.array.forEach((element) => {
+      axios
       .get("https://juice.hackclub.com/api/user", {
         headers: {
           Authorization: `Bearer ${process.env.JUICE_TOKEN}`,
@@ -27,5 +32,6 @@ const app = new App({
           },
         });
       });
+    });
   }, 300000);
 })();
