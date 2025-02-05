@@ -15,7 +15,7 @@ const file_path = process.env.FILE_PATH;
     const file = Bun.file(file_path);
     const jsonData = await file.json();
 
-    jsonData.array.forEach((element) => {
+    Object.keys(jsonData).forEach((key) => {
       axios
         .get("https://juice.hackclub.com/api/user", {
           headers: {
