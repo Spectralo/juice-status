@@ -6,7 +6,7 @@ const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
 });
 
-const file_path = process.env.filePath
+const file_path = process.env.FILE_PATH;
 
 (async () => {
   await app.start(process.env.PORT || 3000);
@@ -17,21 +17,21 @@ const file_path = process.env.filePath
 
     jsonData.array.forEach((element) => {
       axios
-      .get("https://juice.hackclub.com/api/user", {
-        headers: {
-          Authorization: `Bearer ${process.env.JUICE_TOKEN}`,
-        },
-      })
-      .then((res: any) => {
-        console.log(res.data.userData.totalJuiceHours);
-        app.client.users.profile.set({
-          token: process.env.SLACK_BOT_TOKEN,
-          profile: {
-            status_text: `${Math.round(res.data.userData.totalJuiceHours * 10) / 10} hours spent juicing!`,
-            status_emoji: ":juice:",
+        .get("https://juice.hackclub.com/api/user", {
+          headers: {
+            Authorization: `Bearer ${process.env.JUICE_TOKEN}`,
           },
+        })
+        .then((res: any) => {
+          console.log(res.data.userData.totalJuiceHours);
+          app.client.users.profile.set({
+            token: process.env.SLACK_BOT_TOKEN,
+            profile: {
+              status_text: `${Math.round(res.data.userData.totalJuiceHours * 10) / 10} hours spent juicing!`,
+              status_emoji: ":juice:",
+            },
+          });
         });
-      });
     });
-  }, 300000);
+  }, 3000);
 })();
