@@ -22,7 +22,7 @@ const file_path = process.env.FILE_PATH;
             Authorization: `Bearer ${jsonData[key]}`,
           },
         })
-        .then((res: any) => {
+        .then((res) => {
           console.log(res.data.userData.totalJuiceHours);
           app.client.users.profile.set({
             token: key,
@@ -31,6 +31,9 @@ const file_path = process.env.FILE_PATH;
               status_emoji: ":juice:",
             },
           });
+        })
+        .catch((error) => {
+          console.error(error);
         });
     });
   }, 3000);
