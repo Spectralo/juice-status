@@ -36,7 +36,10 @@ const file_path: string = process.env.FILE_PATH || "tokens.json";
               status_emoji: ":juice:",
             },
           });
-        });
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     });
     console.info(`Updated ${counter} users`);
   }, 10000);
