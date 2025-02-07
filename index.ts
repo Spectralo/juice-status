@@ -18,7 +18,6 @@ const file_path: string = process.env.FILE_PATH || "tokens.json";
 
     Object.keys(jsonData).forEach((key) => {
       counter++;
-      console.info("");
       fetch("https://juice.hackclub.com/api/user", {
         headers: {
           Authorization: `Bearer ${jsonData[key]}`,
