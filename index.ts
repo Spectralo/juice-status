@@ -23,7 +23,9 @@ const file_path: string = process.env.FILE_PATH || "tokens.json";
           Authorization: `Bearer ${jsonData[key]}`,
         },
       })
-        .then((res) => res.json())
+        .then((res) => res.json()).catch((error) => {
+          console.error(error)
+        })
         .then((data) => {
           console.info(
             "Fetched 1 user with : " + data.userData.totalJuiceHours + "h",
